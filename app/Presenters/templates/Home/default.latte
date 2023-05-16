@@ -12,6 +12,11 @@
 
 	{block content}
 	
+	{if $row}
+    <h2>Jméno: {$row.firstname}</h2>
+    <p>Příjmení: {$row.lastname}</p>
+    <p>Email: {$row.email}</p>
+	{/if}
 
 	<a n:href="Edit:create">Přejít na formulář -></a>
 	{block scripts}

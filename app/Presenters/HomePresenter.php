@@ -6,15 +6,17 @@ use Nette;
 
 final class HomePresenter extends Nette\Application\UI\Presenter
 {
-	public function __construct(
-		private PostFacade $facade,
-	) {
+
+
+	public function __construct(public Nette\Database\Explorer $database, private PostFacade $facade,) 
+	{
+		$this->database = $database;
 	}
 
 	public function renderDefault(): void
 	{
-		$this->template->posts = $this->facade
-			->getPublicArticles()
-			->limit(5);
+		$row = $this->database->table('contacts')->fetch();
+
+        $this->template->row = $row;
 	}
 }
